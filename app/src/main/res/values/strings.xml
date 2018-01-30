@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">location_news</string>
-
+    <string name="news">相关新闻</string>
+    <string name="map">周边地图</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
