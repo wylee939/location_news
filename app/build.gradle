@@ -36,6 +36,8 @@ dependencies {
     implementation files('libs/BaiduLBS_Android.jar')
     compile(name: 'newsagent', ext: 'aar')
     compile(name: 'adagent', ext: 'aar')
-    compile'com.squareup.okhttp3:okhttp:3.2.0'
+    compile 'com.squareup.okhttp3:okhttp:3.2.0'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile 'com.nineoldandroids:library:2.4.0'
+    implementation files('libs/volley.jar')
 }

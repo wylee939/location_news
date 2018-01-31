@@ -3,16 +3,43 @@ package com.cn.wylee;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
 import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
+import com.baidu.mapapi.map.BaiduMap;
+import com.baidu.mapapi.map.BitmapDescriptor;
+import com.baidu.mapapi.map.BitmapDescriptorFactory;
+import com.baidu.mapapi.map.InfoWindow;
+import com.baidu.mapapi.map.MapPoi;
 import com.baidu.mapapi.map.MapStatusUpdate;
 import com.baidu.mapapi.map.MapStatusUpdateFactory;
 import com.baidu.mapapi.map.MapView;
+import com.baidu.mapapi.map.Marker;
+import com.baidu.mapapi.map.MarkerOptions;
 import com.baidu.mapapi.map.MyLocationConfiguration;
 import com.baidu.mapapi.map.MyLocationData;
+import com.baidu.mapapi.map.OverlayOptions;
+import com.baidu.mapapi.model.LatLng;
+import com.baidu.mapapi.search.core.PoiInfo;
+import com.baidu.mapapi.search.poi.OnGetPoiSearchResultListener;
+import com.baidu.mapapi.search.poi.PoiDetailResult;
+import com.baidu.mapapi.search.poi.PoiIndoorResult;
+import com.baidu.mapapi.search.poi.PoiNearbySearchOption;
+import com.baidu.mapapi.search.poi.PoiResult;
+import com.baidu.mapapi.search.poi.PoiSearch;
+import com.baidu.mapapi.search.poi.PoiSortType;
+import com.cn.wylee.bean.PioBean;
+import com.cn.wylee.view.ShapeLoadingDialog;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Administrator on 2018/1/30.
@@ -22,23 +49,168 @@ public class MapActivity extends AppCompatActivity{
     private MapView mBaiduMap = null;
     public LocationClient mLocationClient = null;
     public BDLocationListener myListener = null;
+    private  PoiSearch mPoiSearch;
+    String TAG="lee";
+    private LatLng latLng ;
+    private List<PioBean> pioBeanList;
+    private String PIO_KEY="PIO";
+    private  ShapeLoadingDialog shapeLoadingDialog;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.map_activity);
+        shapeLoadingDialog = new ShapeLoadingDialog.Builder(this)
+                .loadText("加载地图中...")
+                .build();
+        shapeLoadingDialog.setCanceledOnTouchOutside(false);
+        shapeLoadingDialog.show();
+       // shapeLoadingDialog.setTitle("加载地图中..");
         mBaiduMap = findViewById(R.id.bmapView);
         mLocationClient = new LocationClient(getApplicationContext()); // 声明LocationClient??
         myListener = new MyLocationListener();
         mLocationClient.registerLocationListener(myListener); // 注册监听函数
         setMap();
+      //  serchPoi();
+
+
+    }
+
+    private void serchPoi() {
+        pioBeanList=new ArrayList<>();
+        mPoiSearch = PoiSearch.newInstance();
+        mPoiSearch.setOnGetPoiSearchResultListener(poiListener);
+        /*mPoiSearch.searchInCity((new PoiCitySearchOption())
+                .city("北京")
+                .keyword("彩票")
+                .pageNum(10));*/
+        mPoiSearch.searchNearby(new PoiNearbySearchOption()
+                .keyword("餐厅")
+                .sortType(PoiSortType.distance_from_near_to_far)
+                .location(latLng)
+                .radius(10000)
+                .pageNum(10));
     }
 
     private void setMap() {
         MapStatusUpdate msu = MapStatusUpdateFactory.zoomTo(15.0f);// 设置地图的缩放比例
         mBaiduMap.getMap().setMapStatus(msu);
+        setMapListener();
         location();
     }
 
+
+    OnGetPoiSearchResultListener poiListener = new OnGetPoiSearchResultListener(){
+        @Override
+        public void onGetPoiResult(PoiResult poiResult) {
+            PioBean bean;
+                //获取POI检索结果
+            List<PoiInfo> allPoi = poiResult.getAllPoi();
+
+            if(null==allPoi||allPoi.size()==0){
+                Toast.makeText(MapActivity.this,"周边搜索失败",Toast.LENGTH_SHORT).show();
+                shapeLoadingDialog.dismiss();
+                return;
+            }
+            for (int k=0;k<allPoi.size();k++){
+                Log.d(TAG,allPoi.get(k).name);
+                bean=new PioBean(allPoi.get(k).location.latitude,
+                        allPoi.get(k).location.longitude,allPoi.get(k).address,allPoi.get(k).name);
+                pioBeanList.add(bean);
+            }
+            addOverLay();
+        }
+
+        @Override
+        public void onGetPoiDetailResult(PoiDetailResult poiDetailResult) {
+            //获取Place详情页检索结果
+            Log.d(TAG,poiDetailResult.getLocation().latitude+"");
+        }
+
+        @Override
+        public void onGetPoiIndoorResult(PoiIndoorResult poiIndoorResult) {
+
+        }
+    };
+    //添加标记点
+    private void addOverLay() {
+        new Thread() {
+            public void run() {
+                try {
+                    LatLng latLng;
+                    for (int i = 0; i < pioBeanList.size(); i++) {
+                        PioBean pioBean = pioBeanList.get(i);
+                        latLng=new LatLng(pioBean.getLatitude(),pioBean.getLongtitude());
+                        // 构建Marker图标
+                        BitmapDescriptor descriptor = BitmapDescriptorFactory
+                                .fromResource(R.drawable.pio);
+                        //marker选项
+                        OverlayOptions option = new MarkerOptions()
+                                .position(latLng).icon(descriptor).zIndex(i);
+                        Marker marker = (Marker) mBaiduMap.getMap().addOverlay(option);
+                        //将pio点和一个marker绑定
+                        Bundle bundle = new Bundle();
+                        bundle.putParcelable(PIO_KEY, pioBean);
+                        marker.setExtraInfo(bundle);
+                    }
+                    shapeLoadingDialog.dismiss();
+                } catch (Exception e) {
+                    Log.d(TAG,"添加pio点"+e.toString());
+                    shapeLoadingDialog.dismiss();
+                }
+            }
+        }.start();
+
+    }
+    /**
+     * 设置地图点击监听
+     */
+
+    private void setMapListener() {
+        mBaiduMap.getMap().setOnMapClickListener(new BaiduMap.OnMapClickListener() {
+
+            @Override
+            public boolean onMapPoiClick(MapPoi arg0) {
+                // TODO Auto-generated method stub
+                return false;
+            }
+
+            @Override
+            public void onMapClick(LatLng arg0) {
+                // TODO Auto-generated method stub
+                mBaiduMap.getMap().hideInfoWindow();
+
+            }
+        });
+        // 点击地图覆盖物时触发
+        mBaiduMap.getMap().setOnMarkerClickListener(new BaiduMap.OnMarkerClickListener() {
+
+            @Override
+            public boolean onMarkerClick(Marker marker) {
+                // 从marker中取出对象
+                PioBean pioBean = (PioBean) marker
+                        .getExtraInfo().getParcelable(PIO_KEY);
+                // 将报告摘要传递给弹出的popWindow
+                showDetailPW(pioBean);
+                return false;
+            }
+        });
+    }
+
+    private void showDetailPW(PioBean pioBean) {
+        // 地球标准坐标
+        LatLng latLng = new LatLng(pioBean.getLatitude(),
+                pioBean.getLongtitude());
+        View popWindow =LayoutInflater.from(this).inflate(R.layout.pio_popwindow,
+                null);
+        TextView tv_name=popWindow.findViewById(R.id.name);
+        TextView tv_adress=popWindow.findViewById(R.id.adress);
+        tv_name.setText(pioBean.getName());
+        tv_adress.setText(pioBean.getAdress());
+        // 创建InfoWindow , 传入 view， 地理坐标， y 轴偏移量
+        InfoWindow mInfoWindow = new InfoWindow(popWindow, latLng, -100);
+        // 显示InfoWindow
+        mBaiduMap.getMap().showInfoWindow(mInfoWindow);
+    }
 
     private void location() {
         // TODO Auto-generated method stub
@@ -71,26 +243,32 @@ public class MapActivity extends AppCompatActivity{
 
         @Override
         public void onReceiveLocation(BDLocation location) {
-            locaiontData = new MyLocationData.Builder()
-                    .latitude(location.getLatitude())
-                    .longitude(location.getLongitude()).build();
+            if(location.getLatitude()>3&&location.getLatitude()<54){
+                latLng=  new LatLng(location.getLatitude(),location.getLongitude());
+                locaiontData = new MyLocationData.Builder()
+                        .latitude(location.getLatitude())
+                        .longitude(location.getLongitude()).build();
                 try {
                     if (mBaiduMap != null) {
                         mBaiduMap.getMap().setMyLocationData(locaiontData);
                     }
+                    serchPoi();
                 } catch (Exception e) {
                     // TODO Auto-generated catch block
-                    e.printStackTrace();
+                    Log.d(TAG,e.toString());
+                    shapeLoadingDialog.dismiss();
                 }
+            }
         }
-
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
         //在activity执行onDestroy时执行mMapView.onDestroy()，实现地图生命周期管理
+        mLocationClient.stop();
         mBaiduMap.onDestroy();
+        mPoiSearch.destroy();
     }
     @Override
     protected void onResume() {
