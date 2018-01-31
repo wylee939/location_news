@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.FrameLayout;
 
+import com.cn.wylee.view.ShapeLoadingDialog;
 import com.stonesun.newssdk.NewsAgent;
 import com.stonesun.newssdk.fragment.NewsAFragment;
 
@@ -16,10 +17,16 @@ import com.stonesun.newssdk.fragment.NewsAFragment;
 
 public class NewsActivity extends AppCompatActivity {
     private FrameLayout frameLayout;
+    private ShapeLoadingDialog shapeLoadingDialog;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.news_activity);
+        shapeLoadingDialog = new ShapeLoadingDialog.Builder(this)
+                .loadText("加载地图中...")
+                .build();
+        shapeLoadingDialog.setCanceledOnTouchOutside(false);
+        shapeLoadingDialog.show();
         frameLayout=findViewById(R.id.fl_main);
         NewsAgent.setDebugMode(true);//打开调试日志
         NewsAgent.setPermission(this,true);//sdk请求权限
@@ -31,7 +38,7 @@ public class NewsActivity extends AppCompatActivity {
         FragmentTransaction transaction = fm.beginTransaction();
         NewsAFragment recomFragment = NewsAgent.getDefaultRecomFragment("导航栏");
         transaction.add(R.id.fl_main,recomFragment).commit();
-
+        shapeLoadingDialog.dismiss();
 
     }
 }

@@ -26,13 +26,13 @@ import com.baidu.mapapi.SDKInitializer
 import com.cn.wylee.adapter.KaijiangAdapter
 import com.cn.wylee.bean.KaiJiangInfo
 import com.cn.wylee.util.ParseJsonUtil
+import com.cn.wylee.view.ShapeLoadingDialog
 import com.stonesun.newssdk.NewsAgent
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.content_main.*
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
-    val textArray = getResources().getStringArray(R.array.caipiao)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         SDKInitializer.initialize(applicationContext);
@@ -54,6 +54,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         drawer_layout.addDrawerListener(toggle)
         toggle.syncState()
         initData()
+        val textArray = resources.getStringArray(R.array.caipiao)
+        shouDialog()
         nav_view.setNavigationItemSelectedListener(this)
         spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
@@ -71,6 +73,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
 
 
+    }
+     var shapeLoadingDialog: ShapeLoadingDialog? = null
+    private fun shouDialog() {
+        shapeLoadingDialog = ShapeLoadingDialog.Builder(this)
+                .loadText("数据获取中...")
+                .build()
+        shapeLoadingDialog?.setCanceledOnTouchOutside(false)
+        shapeLoadingDialog?.show()
     }
 
 
@@ -176,7 +186,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private fun showKaijiangView(list: List<KaiJiangInfo>) {
 
         val adapter = KaijiangAdapter(this@MainActivity, list)
-        runOnUiThread(Runnable { listview.adapter = adapter })
+        runOnUiThread(Runnable { listview.adapter = adapter
+            shapeLoadingDialog?.dismiss()
+        })
 
     }
 }

@@ -87,8 +87,8 @@ public class MapActivity extends AppCompatActivity{
                 .keyword("餐厅")
                 .sortType(PoiSortType.distance_from_near_to_far)
                 .location(latLng)
-                .radius(10000)
-                .pageNum(10));
+                .radius(3000)
+                .pageNum(20));
     }
 
     private void setMap() {
