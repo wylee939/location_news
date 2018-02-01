@@ -3,9 +3,12 @@ package com.cn.wylee;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -55,17 +58,28 @@ public class MapActivity extends AppCompatActivity{
     private List<PioBean> pioBeanList;
     private String PIO_KEY="PIO";
     private  ShapeLoadingDialog shapeLoadingDialog;
+    private EditText ed_place;
+    private Button find;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.map_activity);
-        shapeLoadingDialog = new ShapeLoadingDialog.Builder(this)
-                .loadText("加载地图中...")
-                .build();
-        shapeLoadingDialog.setCanceledOnTouchOutside(false);
-        shapeLoadingDialog.show();
        // shapeLoadingDialog.setTitle("加载地图中..");
+        showDialog("加载地图中..");
         mBaiduMap = findViewById(R.id.bmapView);
+        ed_place=findViewById(R.id.place);
+        find=findViewById(R.id.find);
+        find.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(TextUtils.isEmpty(ed_place.getText().toString())){
+                    Toast.makeText(MapActivity.this,"目标不能为空！！",Toast.LENGTH_SHORT).show();
+                }else{
+                    showDialog("正在查找..");
+                    serchPoi(ed_place.getText().toString().trim());
+                }
+            }
+        });
         mLocationClient = new LocationClient(getApplicationContext()); // 声明LocationClient??
         myListener = new MyLocationListener();
         mLocationClient.registerLocationListener(myListener); // 注册监听函数
@@ -75,7 +89,15 @@ public class MapActivity extends AppCompatActivity{
 
     }
 
-    private void serchPoi() {
+    private void showDialog(String title){
+        shapeLoadingDialog = new ShapeLoadingDialog.Builder(this)
+                .loadText(title)
+                .build();
+        shapeLoadingDialog.setCanceledOnTouchOutside(false);
+        shapeLoadingDialog.show();
+    }
+
+    private void serchPoi(String place) {
         pioBeanList=new ArrayList<>();
         mPoiSearch = PoiSearch.newInstance();
         mPoiSearch.setOnGetPoiSearchResultListener(poiListener);
@@ -84,15 +106,16 @@ public class MapActivity extends AppCompatActivity{
                 .keyword("彩票")
                 .pageNum(10));*/
         mPoiSearch.searchNearby(new PoiNearbySearchOption()
-                .keyword("餐厅")
+                .keyword(place)
                 .sortType(PoiSortType.distance_from_near_to_far)
                 .location(latLng)
-                .radius(3000)
+                .radius(5000)
                 .pageNum(20));
     }
 
     private void setMap() {
-        MapStatusUpdate msu = MapStatusUpdateFactory.zoomTo(15.0f);// 设置地图的缩放比例
+        // 设置地图的缩放比例
+        MapStatusUpdate msu = MapStatusUpdateFactory.zoomTo(14.0f);
         mBaiduMap.getMap().setMapStatus(msu);
         setMapListener();
         location();
@@ -107,7 +130,7 @@ public class MapActivity extends AppCompatActivity{
             List<PoiInfo> allPoi = poiResult.getAllPoi();
 
             if(null==allPoi||allPoi.size()==0){
-                Toast.makeText(MapActivity.this,"周边搜索失败",Toast.LENGTH_SHORT).show();
+                Toast.makeText(MapActivity.this,"没有搜索到结果...",Toast.LENGTH_SHORT).show();
                 shapeLoadingDialog.dismiss();
                 return;
             }
@@ -252,7 +275,7 @@ public class MapActivity extends AppCompatActivity{
                     if (mBaiduMap != null) {
                         mBaiduMap.getMap().setMyLocationData(locaiontData);
                     }
-                    serchPoi();
+                    serchPoi("彩票");
                 } catch (Exception e) {
                     // TODO Auto-generated catch block
                     Log.d(TAG,e.toString());

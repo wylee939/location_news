@@ -6,32 +6,33 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_camera"
+            android:visible="false"
             android:icon="@drawable/ic_menu_camera"
             android:title="Import"/>
         <item
             android:id="@+id/nav_gallery"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery"/>
+            android:title="走势分析"/>
         <item
             android:id="@+id/nav_slideshow"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow"/>
+            android:title="免责说明"/>
         <item
             android:id="@+id/nav_manage"
             android:icon="@drawable/ic_menu_manage"
-            android:title="Tools"/>
+            android:title="玩法解答"/>
     </group>
 
-    <item android:title="Communicate">
+    <item android:title="用户中心">
         <menu>
             <item
                 android:id="@+id/nav_share"
                 android:icon="@drawable/ic_menu_share"
-                android:title="Share"/>
+                android:title="登陆"/>
             <item
                 android:id="@+id/nav_send"
                 android:icon="@drawable/ic_menu_send"
-                android:title="Send"/>
+                android:title="更新"/>
         </menu>
     </item>
 
