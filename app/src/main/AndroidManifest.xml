@@ -48,13 +48,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <!--百度地图key-->
-        <meta-data
-            android:name="com.baidu.lbsapi.API_KEY"
-            android:value="UAUmkYHbm22xn9I8XHgufEecCwsaKhXT" />
-
         <!--<meta-data
             android:name="com.baidu.lbsapi.API_KEY"
-            android:value="FoQ9TN3ftyRYlMveUdnW8o8zwtRNGO1O" />-->
+            android:value="UAUmkYHbm22xn9I8XHgufEecCwsaKhXT" />-->
+
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="FoQ9TN3ftyRYlMveUdnW8o8zwtRNGO1O" />
         <meta-data android:name="MANA_APPKEY"
                    android:value="NEWSSDK-418992"></meta-data>
         <meta-data android:name="MANA_AppSecret"

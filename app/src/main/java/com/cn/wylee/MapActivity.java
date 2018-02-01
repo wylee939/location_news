@@ -107,10 +107,10 @@ public class MapActivity extends AppCompatActivity{
                 .pageNum(10));*/
         mPoiSearch.searchNearby(new PoiNearbySearchOption()
                 .keyword(place)
-                .sortType(PoiSortType.distance_from_near_to_far)
+                .sortType(PoiSortType.comprehensive)
                 .location(latLng)
-                .radius(5000)
-                .pageNum(20));
+                .radius(8000)
+                .pageNum(50));
     }
 
     private void setMap() {
