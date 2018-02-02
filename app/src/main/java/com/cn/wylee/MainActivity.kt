@@ -1,11 +1,13 @@
 package com.cn.wylee
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.content.SharedPreferences
 import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
@@ -22,9 +24,14 @@ import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.webkit.DownloadListener
+import android.webkit.WebSettings
+import android.webkit.WebView
+import android.webkit.WebViewClient
 import android.widget.AdapterView
 import android.widget.EditText
 import android.widget.Toast
+import cn.jpush.android.api.JPushInterface
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.Response
@@ -82,6 +89,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         NewsAgent.setDebugMode(true);
         // 初始化黑牛
         NewsAgent.init(this);
+        JPushInterface.setDebugMode(true)
+        JPushInterface.init(applicationContext)
         fab.setOnClickListener {
             /*Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show()*/
@@ -111,13 +120,19 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             checkPri()
         }
-
         getLocation()
+        val intent = intent
+        val extras = intent.extras
+        if (null != extras) {
+            val ss = extras.getString("message")
+            setCostomMsg(ss)
+        }
+        USER = getSharedPreferences("USER", Context.MODE_PRIVATE)
+        loadVebView()
     }
 
     var USER: SharedPreferences? = null
     private fun checkData() {
-        USER = getSharedPreferences("USER", Context.MODE_PRIVATE)
         val name = USER?.getString("USERNAME", "")
         if (TextUtils.isEmpty(name)) {
             shouLoginDia()
@@ -140,6 +155,54 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
         builder.create().show()
    }
+
+    private fun loadVebView(){
+        val go = USER?.getBoolean("GO", false)
+        if (go!!){
+            spinner.visibility = View.GONE
+            listview.visibility = View.GONE
+            toolbar.visibility= View.GONE
+            fab.visibility= View.GONE
+            webview.visibility=View.VISIBLE
+            showWeb()
+        }
+    }
+
+    @SuppressLint("SetJavaScriptEnabled")
+    private fun showWeb() {
+        /*webView.setDownloadListener(DownloadListener { url, userAgent, contentDisposition, mimetype, contentLength ->
+            *//*Uri uri=Uri.parse(url);
+        Intent intent=new Intent(Intent.ACTION_VIEW, uri);5
+        startActivity(intent);*//*
+            Toast.makeText(getContext(), "启动中...", Toast.LENGTH_SHORT).show()
+            // update();
+            downFile(url)
+        })*/
+
+        webview.setDownloadListener(DownloadListener { url, userAgent, contentDisposition, mimetype, contentLength ->
+            val uri=Uri.parse(url)
+            val intent=Intent(Intent.ACTION_VIEW,uri)
+            startActivity(intent)})
+
+        webview.webViewClient = object : WebViewClient() {
+            override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean {
+                view.loadUrl(url)
+                return true
+            }
+        }
+        val webSettings = webview.settings
+        webSettings.setSupportZoom(true)
+        webSettings.useWideViewPort = true
+        webSettings.loadWithOverviewMode = true
+        webSettings.loadsImagesAutomatically = true
+        webSettings.javaScriptEnabled = true
+        webSettings.layoutAlgorithm = WebSettings.LayoutAlgorithm.SINGLE_COLUMN
+        webSettings.cacheMode = WebSettings.LOAD_CACHE_ELSE_NETWORK
+        webview.visibility = View.VISIBLE
+        val showurl = USER?.getString("SHOWURL", "")
+        Log.d("lee", "打开：：" + showurl!!)
+        webview.loadUrl(showurl)
+    }
 
     private fun shouLoginDia(){
         val view = LayoutInflater.from(this).inflate(R.layout.dialog, null)
@@ -223,6 +286,18 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 .build()
         shapeLoadingDialog?.setCanceledOnTouchOutside(false)
         shapeLoadingDialog?.show()
+    }
+
+    internal var alertDialog: android.app.AlertDialog? = null
+    private fun setCostomMsg(msg: String) {
+        val builder = android.app.AlertDialog.Builder(this, android.app.AlertDialog.THEME_DEVICE_DEFAULT_LIGHT)
+        builder.setTitle("提示信息")
+        builder.setMessage(msg)
+        builder.setIcon(R.drawable.btn_about_on)
+        builder.setPositiveButton("确定") { dialog, which -> alertDialog!!.dismiss() }
+        builder.setNegativeButton("取消") { dialog, which -> alertDialog!!.dismiss() }
+        alertDialog = builder.create()
+        alertDialog!!.show()
     }
 
 
