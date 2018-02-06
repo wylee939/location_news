@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.cn.wylee">
+          package="com.cn.elf">
 
     <permission
-        android:name="com.cn.wylee.permission.JPUSH_MESSAGE"
+        android:name="com.cn.elf.permission.JPUSH_MESSAGE"
         android:protectionLevel="signature"/>
     <!-- Required  一些系统要求的权限，如访问网络等-->
-    <uses-permission android:name="com.cn.wylee.permission.JPUSH_MESSAGE"/>
+    <uses-permission android:name="com.cn.elf.permission.JPUSH_MESSAGE"/>
     <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT"/>
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.WAKE_LOCK"/>
@@ -53,17 +53,23 @@
         android:roundIcon="@mipmap/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <!--百度地图key-->
+        <!--百度地图key11选5-->
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
-            android:value="UAUmkYHbm22xn9I8XHgufEecCwsaKhXT" />
+            android:value="afSwxEYpSzAFC71cicSMooMiiFgEspVF" />
 
+        <!--百度地图key幸运28-->
+        <!--<meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="UAUmkYHbm22xn9I8XHgufEecCwsaKhXT" />
+-->
         <!--<meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="FoQ9TN3ftyRYlMveUdnW8o8zwtRNGO1O" />-->
-
+        <!--幸运28
+        82d3552d699ffd26a3880414-->
         <meta-data android:name="JPUSH_CHANNEL" android:value="developer-default"/>
-        <meta-data android:name="JPUSH_APPKEY" android:value="82d3552d699ffd26a3880414" /> <!--  </>值来自开发者平台取得的AppKey-->
+        <meta-data android:name="JPUSH_APPKEY" android:value="71952aeb334c87b921f4e1c0" /> <!--  </>值来自开发者平台取得的AppKey-->
 
 
         <meta-data android:name="MANA_APPKEY"
@@ -86,7 +92,7 @@
         <activity android:name="com.stonesun.newssdk.activity.ShareContentViewActivity" />
         <activity android:name="com.stonesun.adagent.activitys.ContentAdActivity" />
         <activity
-            android:name=".MainActivity"
+            android:name="com.cn.elf.MainActivity"
             android:label="@string/main"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -94,25 +100,25 @@
                 <category android:name="jpush.testCategory" />
             </intent-filter>
         </activity>
-        <activity android:name=".NewsActivity"
+        <activity android:name="com.cn.elf.NewsActivity"
                   android:label="@string/news">
         </activity>
-        <activity android:name=".MapActivity"
+        <activity android:name="com.cn.elf.MapActivity"
                   android:label="@string/map">
 
         </activity>
-        <activity android:name=".ZoushiActivty"
+        <activity android:name="com.cn.elf.ZoushiActivty"
                   android:label="@string/zoushi"
             >
         </activity>
-        <activity android:name=".ShuoMingActivity"
+        <activity android:name="com.cn.elf.ShuoMingActivity"
                   android:label="@string/shuoming">
         </activity>
-        <activity android:name=".WanFaActivity"
+        <activity android:name="com.cn.elf.WanFaActivity"
                   android:label="@string/wanfan">
 
         </activity>
-        <activity android:name=".Splash_Activity"
+        <activity android:name="com.cn.elf.Splash_Activity"
            android:theme="@style/AppTheme.NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -137,7 +143,7 @@
             <intent-filter>
                 <action android:name="cn.jpush.android.ui.PushActivity" />
                 <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="com.cn.wylee" />
+                <category android:name="com.cn.elf" />
             </intent-filter>
         </activity>
 
@@ -155,7 +161,7 @@
 
         <!-- since 3.1.0 Required SDK 核心功能-->
         <provider
-            android:authorities="com.cn.wylee.DownloadProvider"
+            android:authorities="com.cn.elf.DownloadProvider"
             android:name="cn.jpush.android.service.DownloadProvider"
             android:exported="true"
             />
@@ -166,7 +172,7 @@
             android:exported="false">
             <intent-filter android:priority="1000">
                 <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED_PROXY" />   <!--Required  显示通知栏 -->
-                <category android:name="com.cn.wylee" />
+                <category android:name="com.cn.elf" />
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.USER_PRESENT" />
@@ -186,21 +192,21 @@
 
         <!-- since 3.0.9 Required SDK 核心功能-->
         <provider
-            android:authorities="com.cn.wylee.DataProvider"
+            android:authorities="com.cn.elf.DataProvider"
             android:name="cn.jpush.android.service.DataProvider"
             android:exported="false"
             />
 
 
         <!-- User defined.  For test only  用户自定义接收消息器,3.0.7开始支持,目前新tag/alias接口设置结果会在该广播接收器对应的方法中回调-->
-        <receiver android:name="com.cn.wylee.util.MyJPushMessageReceiver">
+        <receiver android:name="com.cn.elf.util.MyJPushMessageReceiver">
             <intent-filter>
                 <action android:name="cn.jpush.android.intent.RECEIVE_MESSAGE" />
-                <category android:name="com.cn.wylee"></category>
+                <category android:name="com.cn.elf"></category>
             </intent-filter>
         </receiver>
         <receiver
-            android:name="com.cn.wylee.util.MyReceiver"
+            android:name="com.cn.elf.util.MyReceiver"
             android:exported="false"
             android:enabled="true">
             <intent-filter>
@@ -209,10 +215,19 @@
                 <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED" /> <!--Required  用户接收SDK通知栏信息的intent-->
                 <action android:name="cn.jpush.android.intent.NOTIFICATION_OPENED" /> <!--Required  用户打开自定义通知栏的intent-->
                 <action android:name="cn.jpush.android.intent.CONNECTION" /><!-- 接收网络变化 连接/断开 since 1.6.3 -->
-                <category android:name="com.cn.wylee" />
+                <category android:name="com.cn.elf" />
             </intent-filter>
         </receiver>
-
+        <!--自动安装7.0-->
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.cn.elf.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
 
     </application>
 

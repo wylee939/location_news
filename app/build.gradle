@@ -7,7 +7,7 @@ apply plugin: 'kotlin-android-extensions'
 android {
     compileSdkVersion 26
     defaultConfig {
-        applicationId "com.cn.wylee"
+        applicationId "com.cn.elf"
         minSdkVersion 16
         targetSdkVersion 26
         versionCode 1
@@ -20,6 +20,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    android {
+        useLibrary 'org.apache.http.legacy'
+    }
+
     repositories{
         flatDir {dirs'libs'}
     }
