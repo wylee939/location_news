@@ -1,6 +1,7 @@
 <resources>
     <!--<string name="app_name">彩77幸运28</string>-->
-    <string name="app_name">广东11选5</string>
+    <!--<string name="app_name">广东11选5</string>-->
+    <string name="app_name">幸运28</string>
     <string name="main">最新开奖</string>
     <string name="news">相关新闻</string>
     <string name="map">周边地图</string>

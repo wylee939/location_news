@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="caipiao">
+        <item>双色球</item>
         <item>超级大乐透</item>
         <item>福彩3d</item>
         <item>排列3</item>
         <item>排列5</item>
         <item>七乐彩</item>
         <item>七星彩</item>
-        <item>双色球</item>
         <item>六场半全场</item>
         <item>四场进球彩</item>
         <item>安徽11选5 - 高频</item>
