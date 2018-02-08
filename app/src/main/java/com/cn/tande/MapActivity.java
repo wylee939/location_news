@@ -287,11 +287,22 @@ public class MapActivity extends AppCompatActivity{
 
     @Override
     protected void onDestroy() {
-        super.onDestroy();
+
         //在activity执行onDestroy时执行mMapView.onDestroy()，实现地图生命周期管理
-        mLocationClient.stop();
-        mBaiduMap.onDestroy();
-        mPoiSearch.destroy();
+        try {
+            if (mLocationClient != null) {
+                mLocationClient.stop();
+            }
+            if (mBaiduMap != null) {
+                mBaiduMap.onDestroy();
+            }
+            if (mPoiSearch != null) {
+                mPoiSearch.destroy();
+            }
+        }catch (Exception e){
+
+        }
+        super.onDestroy();
     }
     @Override
     protected void onResume() {
