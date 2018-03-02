@@ -109,13 +109,13 @@ public class MapActivity extends AppCompatActivity{
                 .keyword(place)
                 .sortType(PoiSortType.comprehensive)
                 .location(latLng)
-                .radius(6000)
+                .radius(10000)
                 .pageNum(50));
     }
 
     private void setMap() {
         // 设置地图的缩放比例
-        MapStatusUpdate msu = MapStatusUpdateFactory.zoomTo(14.0f);
+        MapStatusUpdate msu = MapStatusUpdateFactory.zoomTo(13.5f);
         mBaiduMap.getMap().setMapStatus(msu);
         setMapListener();
         location();

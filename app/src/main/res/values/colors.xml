@@ -2,13 +2,14 @@
 <resources>
    <!-- <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>-->
-    <color name="colorPrimary">#009688</color>
-    <color name="colorPrimaryDark">#4DB6AC</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">#515679</color>
+    <color name="colorPrimaryDark">#595B5D</color>
+    <color name="colorAccent">#3C3F41</color>
     <color name="white">#ffffff</color><!--白色 -->
     <color name="sunny">#E5644C</color>
     <color name="cloth">#88C5CC</color>
     <color name="sports">#FB500F</color>
+    <color name="title">#F2F2F2</color>
     <color name="flux">#51B9D6</color>
     <color name="transparent">#00000000</color>
     <color name="ivory">#fffff0</color><!--象牙色 -->

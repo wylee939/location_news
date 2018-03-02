@@ -3,7 +3,7 @@
               android:orientation="vertical"
               android:layout_margin="5dp"
               android:layout_width="match_parent"
-              android:background="#009688"
+              android:background="#3B3C32"
               android:layout_height="match_parent">
     <ScrollView
         android:layout_width="wrap_content"
