@@ -3,7 +3,7 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:orientation="vertical"
-              tools:context="com.cn.tande.MainActivity">
+              tools:context="com.cn.sscyyb.MainActivity">
 
     <ScrollView
         android:layout_width="match_parent"

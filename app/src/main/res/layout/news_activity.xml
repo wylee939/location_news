@@ -5,7 +5,7 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:orientation="vertical"
-              tools:context="com.cn.tande.NewsActivity">
+              tools:context="com.cn.sscyyb.NewsActivity">
     <FrameLayout
         android:id="@+id/fl_main"
         android:layout_width="match_parent"

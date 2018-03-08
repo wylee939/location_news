@@ -5,6 +5,14 @@
 
     <group android:checkableBehavior="single">
         <item
+            android:id="@+id/nav_map"
+            android:icon="@drawable/map"
+            android:title="购彩地图"/>
+        <item
+            android:id="@+id/nav_news"
+            android:icon="@drawable/xinwen"
+            android:title="彩票新闻"/>
+        <item
             android:id="@+id/nav_camera"
             android:visible="false"
             android:icon="@drawable/ic_menu_camera"

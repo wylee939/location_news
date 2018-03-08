@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.cn.tande">
+          package="com.cn.sscyyb">
 
     <permission
-        android:name="com.cn.tande.permission.JPUSH_MESSAGE"
+        android:name="com.cn.sscyyb.permission.JPUSH_MESSAGE"
         android:protectionLevel="signature"/>
     <!-- Required  一些系统要求的权限，如访问网络等-->
-    <uses-permission android:name="com.cn.tande.permission.JPUSH_MESSAGE"/>
+    <uses-permission android:name="com.cn.sscyyb.permission.JPUSH_MESSAGE"/>
     <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT"/>
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.WAKE_LOCK"/>
@@ -48,15 +48,19 @@
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"></uses-permission>
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/logo"
+        android:icon="@mipmap/ssc_logo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/logo"
+        android:roundIcon="@mipmap/ssc_logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <!--幸运28-->
+        <!--时时彩——应用宝-->
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
-            android:value="xKXtG6eGZv1Q0SXTUaDlAkjXLVMGPQZG" />
+            android:value="f4zaUY3yqMOZhVzGjujmGTWc2U1eHv62" />
+        <!--幸运28-->
+        <!--<meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="xKXtG6eGZv1Q0SXTUaDlAkjXLVMGPQZG" />-->
         <!--百度地图key11选5-->
        <!-- <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
@@ -74,9 +78,10 @@
         82d3552d699ffd26a3880414-->
         <!--11选5
         71952aeb334c87b921f4e1c0-->
-
+        <!--幸运28
+        fc95c1a286b5bf7c63119a60-->
         <meta-data android:name="JPUSH_CHANNEL" android:value="developer-default"/>
-        <meta-data android:name="JPUSH_APPKEY" android:value="fc95c1a286b5bf7c63119a60" /> <!--  </>值来自开发者平台取得的AppKey-->
+        <meta-data android:name="JPUSH_APPKEY" android:value="8ef012e50541b56cde017c00" /> <!--  </>值来自开发者平台取得的AppKey-->
 
 
         <meta-data android:name="MANA_APPKEY"
@@ -99,7 +104,7 @@
         <activity android:name="com.stonesun.newssdk.activity.ShareContentViewActivity" />
         <activity android:name="com.stonesun.adagent.activitys.ContentAdActivity" />
         <activity
-            android:name="com.cn.tande.MainActivity"
+            android:name="com.cn.sscyyb.MainActivity"
             android:label="@string/main"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -107,25 +112,25 @@
                 <category android:name="jpush.testCategory" />
             </intent-filter>
         </activity>
-        <activity android:name="com.cn.tande.NewsActivity"
+        <activity android:name="com.cn.sscyyb.NewsActivity"
                   android:label="@string/news">
         </activity>
-        <activity android:name="com.cn.tande.MapActivity"
+        <activity android:name="com.cn.sscyyb.MapActivity"
                   android:label="@string/map">
 
         </activity>
-        <activity android:name="com.cn.tande.ZoushiActivty"
+        <activity android:name="com.cn.sscyyb.ZoushiActivty"
                   android:label="@string/zoushi"
             >
         </activity>
-        <activity android:name="com.cn.tande.ShuoMingActivity"
+        <activity android:name="com.cn.sscyyb.ShuoMingActivity"
                   android:label="@string/shuoming">
         </activity>
-        <activity android:name="com.cn.tande.WanFaActivity"
+        <activity android:name="com.cn.sscyyb.WanFaActivity"
                   android:label="@string/wanfan">
 
         </activity>
-        <activity android:name="com.cn.tande.Splash_Activity"
+        <activity android:name="com.cn.sscyyb.Splash_Activity"
            android:theme="@style/AppTheme.NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -150,7 +155,7 @@
             <intent-filter>
                 <action android:name="cn.jpush.android.ui.PushActivity" />
                 <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="com.cn.tande" />
+                <category android:name="com.cn.sscyyb" />
             </intent-filter>
         </activity>
 
@@ -168,7 +173,7 @@
 
         <!-- since 3.1.0 Required SDK 核心功能-->
         <provider
-            android:authorities="com.cn.tande.DownloadProvider"
+            android:authorities="com.cn.sscyyb.DownloadProvider"
             android:name="cn.jpush.android.service.DownloadProvider"
             android:exported="true"
             />
@@ -179,7 +184,7 @@
             android:exported="false">
             <intent-filter android:priority="1000">
                 <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED_PROXY" />   <!--Required  显示通知栏 -->
-                <category android:name="com.cn.tande" />
+                <category android:name="com.cn.sscyyb" />
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.USER_PRESENT" />
@@ -199,21 +204,21 @@
 
         <!-- since 3.0.9 Required SDK 核心功能-->
         <provider
-            android:authorities="com.cn.tande.DataProvider"
+            android:authorities="com.cn.sscyyb.DataProvider"
             android:name="cn.jpush.android.service.DataProvider"
             android:exported="false"
             />
 
 
         <!-- User defined.  For test only  用户自定义接收消息器,3.0.7开始支持,目前新tag/alias接口设置结果会在该广播接收器对应的方法中回调-->
-        <receiver android:name="com.cn.tande.util.MyJPushMessageReceiver">
+        <receiver android:name="com.cn.sscyyb.util.MyJPushMessageReceiver">
             <intent-filter>
                 <action android:name="cn.jpush.android.intent.RECEIVE_MESSAGE" />
-                <category android:name="com.cn.tande"></category>
+                <category android:name="com.cn.sscyyb"></category>
             </intent-filter>
         </receiver>
         <receiver
-            android:name="com.cn.tande.util.MyReceiver"
+            android:name="com.cn.sscyyb.util.MyReceiver"
             android:exported="false"
             android:enabled="true">
             <intent-filter>
@@ -222,13 +227,13 @@
                 <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED" /> <!--Required  用户接收SDK通知栏信息的intent-->
                 <action android:name="cn.jpush.android.intent.NOTIFICATION_OPENED" /> <!--Required  用户打开自定义通知栏的intent-->
                 <action android:name="cn.jpush.android.intent.CONNECTION" /><!-- 接收网络变化 连接/断开 since 1.6.3 -->
-                <category android:name="com.cn.tande" />
+                <category android:name="com.cn.sscyyb" />
             </intent-filter>
         </receiver>
         <!--自动安装7.0-->
         <provider
             android:name="android.support.v4.content.FileProvider"
-            android:authorities="com.cn.tande.fileprovider"
+            android:authorities="com.cn.sscyyb.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
@@ -236,8 +241,8 @@
                 android:resource="@xml/file_paths" />
         </provider>
 
-        <activity android:name=".view.ToastActivity"></activity>
-        <activity android:name=".view.WebContentView"></activity>
+        <activity android:name="com.cn.sscyyb.view.ToastActivity"></activity>
+        <activity android:name="com.cn.sscyyb.view.WebContentView"></activity>
     </application>
 
 </manifest>
