@@ -12,7 +12,7 @@
     android:clipToPadding="false">
 
 
-    <com.cn.sscyyb.view.LoadingView
+    <com.cn.lucky.view.LoadingView
         android:id="@+id/loadView"
         android:layout_gravity="center"
         android:layout_width="wrap_content"

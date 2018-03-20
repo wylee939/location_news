@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.cn.sscyyb">
+          package="com.cn.lucky">
 
     <permission
-        android:name="com.cn.sscyyb.permission.JPUSH_MESSAGE"
+        android:name="com.cn.lucky.permission.JPUSH_MESSAGE"
         android:protectionLevel="signature"/>
     <!-- Required  一些系统要求的权限，如访问网络等-->
-    <uses-permission android:name="com.cn.sscyyb.permission.JPUSH_MESSAGE"/>
+    <uses-permission android:name="com.cn.lucky.permission.JPUSH_MESSAGE"/>
     <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT"/>
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.WAKE_LOCK"/>
@@ -48,9 +48,9 @@
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"></uses-permission>
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ssc_logo"
+        android:icon="@mipmap/logo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ssc_logo"
+        android:roundIcon="@mipmap/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <!--时时彩——应用宝-->
@@ -80,8 +80,10 @@
         71952aeb334c87b921f4e1c0-->
         <!--幸运28
         fc95c1a286b5bf7c63119a60-->
+        <!--时时彩
+        8ef012e50541b56cde017c00-->
         <meta-data android:name="JPUSH_CHANNEL" android:value="developer-default"/>
-        <meta-data android:name="JPUSH_APPKEY" android:value="8ef012e50541b56cde017c00" /> <!--  </>值来自开发者平台取得的AppKey-->
+        <meta-data android:name="JPUSH_APPKEY" android:value="96f5844092ceb42ba98e78c4" /> <!--  </>值来自开发者平台取得的AppKey-->
 
 
         <meta-data android:name="MANA_APPKEY"
@@ -104,7 +106,7 @@
         <activity android:name="com.stonesun.newssdk.activity.ShareContentViewActivity" />
         <activity android:name="com.stonesun.adagent.activitys.ContentAdActivity" />
         <activity
-            android:name="com.cn.sscyyb.MainActivity"
+            android:name="com.cn.lucky.MainActivity"
             android:label="@string/main"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -112,25 +114,25 @@
                 <category android:name="jpush.testCategory" />
             </intent-filter>
         </activity>
-        <activity android:name="com.cn.sscyyb.NewsActivity"
+        <activity android:name="com.cn.lucky.NewsActivity"
                   android:label="@string/news">
         </activity>
-        <activity android:name="com.cn.sscyyb.MapActivity"
+        <activity android:name="com.cn.lucky.MapActivity"
                   android:label="@string/map">
 
         </activity>
-        <activity android:name="com.cn.sscyyb.ZoushiActivty"
+        <activity android:name="com.cn.lucky.ZoushiActivty"
                   android:label="@string/zoushi"
             >
         </activity>
-        <activity android:name="com.cn.sscyyb.ShuoMingActivity"
+        <activity android:name="com.cn.lucky.ShuoMingActivity"
                   android:label="@string/shuoming">
         </activity>
-        <activity android:name="com.cn.sscyyb.WanFaActivity"
+        <activity android:name="com.cn.lucky.WanFaActivity"
                   android:label="@string/wanfan">
 
         </activity>
-        <activity android:name="com.cn.sscyyb.Splash_Activity"
+        <activity android:name="com.cn.lucky.Splash_Activity"
            android:theme="@style/AppTheme.NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -155,7 +157,7 @@
             <intent-filter>
                 <action android:name="cn.jpush.android.ui.PushActivity" />
                 <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="com.cn.sscyyb" />
+                <category android:name="com.cn.lucky" />
             </intent-filter>
         </activity>
 
@@ -173,7 +175,7 @@
 
         <!-- since 3.1.0 Required SDK 核心功能-->
         <provider
-            android:authorities="com.cn.sscyyb.DownloadProvider"
+            android:authorities="com.cn.lucky.DownloadProvider"
             android:name="cn.jpush.android.service.DownloadProvider"
             android:exported="true"
             />
@@ -184,7 +186,7 @@
             android:exported="false">
             <intent-filter android:priority="1000">
                 <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED_PROXY" />   <!--Required  显示通知栏 -->
-                <category android:name="com.cn.sscyyb" />
+                <category android:name="com.cn.lucky" />
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.USER_PRESENT" />
@@ -204,21 +206,21 @@
 
         <!-- since 3.0.9 Required SDK 核心功能-->
         <provider
-            android:authorities="com.cn.sscyyb.DataProvider"
+            android:authorities="com.cn.lucky.DataProvider"
             android:name="cn.jpush.android.service.DataProvider"
             android:exported="false"
             />
 
 
         <!-- User defined.  For test only  用户自定义接收消息器,3.0.7开始支持,目前新tag/alias接口设置结果会在该广播接收器对应的方法中回调-->
-        <receiver android:name="com.cn.sscyyb.util.MyJPushMessageReceiver">
+        <receiver android:name="com.cn.lucky.util.MyJPushMessageReceiver">
             <intent-filter>
                 <action android:name="cn.jpush.android.intent.RECEIVE_MESSAGE" />
-                <category android:name="com.cn.sscyyb"></category>
+                <category android:name="com.cn.lucky"></category>
             </intent-filter>
         </receiver>
         <receiver
-            android:name="com.cn.sscyyb.util.MyReceiver"
+            android:name="com.cn.lucky.util.MyReceiver"
             android:exported="false"
             android:enabled="true">
             <intent-filter>
@@ -227,13 +229,13 @@
                 <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED" /> <!--Required  用户接收SDK通知栏信息的intent-->
                 <action android:name="cn.jpush.android.intent.NOTIFICATION_OPENED" /> <!--Required  用户打开自定义通知栏的intent-->
                 <action android:name="cn.jpush.android.intent.CONNECTION" /><!-- 接收网络变化 连接/断开 since 1.6.3 -->
-                <category android:name="com.cn.sscyyb" />
+                <category android:name="com.cn.lucky" />
             </intent-filter>
         </receiver>
         <!--自动安装7.0-->
         <provider
             android:name="android.support.v4.content.FileProvider"
-            android:authorities="com.cn.sscyyb.fileprovider"
+            android:authorities="com.cn.lucky.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
@@ -241,8 +243,8 @@
                 android:resource="@xml/file_paths" />
         </provider>
 
-        <activity android:name="com.cn.sscyyb.view.ToastActivity"></activity>
-        <activity android:name="com.cn.sscyyb.view.WebContentView"></activity>
+        <activity android:name="com.cn.lucky.view.ToastActivity"></activity>
+        <activity android:name="com.cn.lucky.view.WebContentView"></activity>
     </application>
 
 </manifest>
