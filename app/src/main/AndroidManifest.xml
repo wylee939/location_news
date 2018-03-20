@@ -53,10 +53,15 @@
         android:roundIcon="@mipmap/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <!--时时彩——应用宝-->
+        <!--幸运28应用宝-->
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
-            android:value="f4zaUY3yqMOZhVzGjujmGTWc2U1eHv62" />
+            android:value="QdXpiHNPySKDFyzccvQHB26s11UTQkNf" />
+        <!--时时彩——应用宝-->
+        <!--<meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="f4zaUY3yqMOZhVzGjujmGTWc2U1eHv62" />-->
+
         <!--幸运28-->
         <!--<meta-data
             android:name="com.baidu.lbsapi.API_KEY"

@@ -58,7 +58,7 @@ public class Splash_Activity extends Activity {
         //魅族 幸运28  ID 201802070953
         //时时彩 ——应用宝 ID 201803081006
         //北京赛车极光账号：xpjpk66	密码：QQQ111qqq
-        StringRequest request = new StringRequest(Request.Method.GET, "http://www.6122c.com/Lottery_server/get_init_data?appid=201803081006&type=android", new Response.Listener<String>() {
+        StringRequest request = new StringRequest(Request.Method.GET, "http://www.6122c.com/Lottery_server/get_init_data?appid=201803201616&type=android", new Response.Listener<String>() {
             @Override
             public void onResponse(String string) {
                 Log.d("lee",string);

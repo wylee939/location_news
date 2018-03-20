@@ -22,10 +22,11 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
+            <!--E5AEBA-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#d2b48c"
+                android:background="#D33F36"
                 android:orientation="horizontal"
                 android:padding="5dp">
 
