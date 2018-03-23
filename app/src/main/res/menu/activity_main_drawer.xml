@@ -11,8 +11,9 @@
             android:title="购彩地图"/>
         <item
             android:id="@+id/nav_news"
+            android:visible="false"
             android:icon="@drawable/xinwen"
-            android:title="彩票新闻"/>
+            android:title="彩票资讯"/>
         <item
             android:id="@+id/nav_camera"
             android:visible="false"
