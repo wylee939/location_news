@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="caipiao">
+
+        <item>北京赛车(pk10) - 高频</item>
+        <item>湖南幸运赛车 - 高频</item>
         <item>重庆时时彩 - 高频</item>
         <item>超级大乐透</item>
         <item>黑龙江时时彩 - 高频</item>
