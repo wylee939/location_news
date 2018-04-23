@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.cn.bjscpk">
+          package="com.cn.bjssc">
 
     <permission
-        android:name="com.cn.bjscpk.permission.JPUSH_MESSAGE"
+        android:name="com.cn.bjssc.permission.JPUSH_MESSAGE"
         android:protectionLevel="signature"/>
     <!-- Required  一些系统要求的权限，如访问网络等-->
-    <uses-permission android:name="com.cn.bjscpk.permission.JPUSH_MESSAGE"/>
+    <uses-permission android:name="com.cn.bjssc.permission.JPUSH_MESSAGE"/>
     <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT"/>
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.WAKE_LOCK"/>
@@ -26,7 +26,31 @@
     <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS"/>
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.GET_TASKS"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <!-- renren sso Permission for Unit Test -->
+    <!-- QQ、QQ空间所需权限 -->
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.SET_DEBUG_APP" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.USE_CREDENTIALS" />
+    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
 
+    <!-- 分享添加必要的权限 -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="com.huawei.android.launcher.permission.READ_SETTINGS" />
+    <uses-permission android:name="com.huawei.android.launcher.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="com.huawei.android.launcher.permission.CHANGE_BADGE" />
 
     <!-- 这个权限用于进行网络定位-->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"></uses-permission>
@@ -48,16 +72,16 @@
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"></uses-permission>
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/logo10"
+        android:icon="@mipmap/bjssc"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/logo10"
+        android:roundIcon="@mipmap/bjssc"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <!--时时彩华为-->
 
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
-            android:value="MA8oo2mqUdaIOGl5wbc3nE4vUsYGrnYB" />
+            android:value="QGMxdPFEyswblmZSDknb6RZfcixDKqc6" />
         <!--幸运28应用宝-->
         <!--<meta-data
             android:name="com.baidu.lbsapi.API_KEY"
@@ -97,7 +121,7 @@
         <!--时时彩华为
         df553f6b3c93c3d8f4d2139e-->
         <meta-data android:name="JPUSH_CHANNEL" android:value="developer-default"/>
-        <meta-data android:name="JPUSH_APPKEY" android:value="1197c8b121c58e355af598fb" /> <!--  </>值来自开发者平台取得的AppKey-->
+        <meta-data android:name="JPUSH_APPKEY" android:value="768f1af584f04522c74a7058" /> <!--  </>值来自开发者平台取得的AppKey-->
 
         <meta-data android:name="MANA_APPKEY"
                    android:value="NEWSSDK-418992"></meta-data>
@@ -118,8 +142,10 @@
             ></activity>
         <activity android:name="com.stonesun.newssdk.activity.ShareContentViewActivity" />
         <activity android:name="com.stonesun.adagent.activitys.ContentAdActivity" />
+        <activity android:name="com.stonesun.newssdk.permission.PermissionActivity"
+                  android:theme="@style/AppTheme"/>
         <activity
-            android:name="com.cn.bjscpk.MainActivity"
+            android:name="com.cn.bjssc.MainActivity"
             android:label="@string/main"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -127,25 +153,25 @@
                 <category android:name="jpush.testCategory" />
             </intent-filter>
         </activity>
-        <activity android:name="com.cn.bjscpk.NewsActivity"
+        <activity android:name="com.cn.bjssc.NewsActivity"
                   android:label="@string/news">
         </activity>
-        <activity android:name="com.cn.bjscpk.MapActivity"
+        <activity android:name="com.cn.bjssc.MapActivity"
                   android:label="@string/map">
 
         </activity>
-        <activity android:name="com.cn.bjscpk.ZoushiActivty"
+        <activity android:name="com.cn.bjssc.ZoushiActivty"
                   android:label="@string/zoushi"
             >
         </activity>
-        <activity android:name="com.cn.bjscpk.ShuoMingActivity"
+        <activity android:name="com.cn.bjssc.ShuoMingActivity"
                   android:label="@string/shuoming">
         </activity>
-        <activity android:name="com.cn.bjscpk.WanFaActivity"
+        <activity android:name="com.cn.bjssc.WanFaActivity"
                   android:label="@string/wanfan">
 
         </activity>
-        <activity android:name="com.cn.bjscpk.Splash_Activity"
+        <activity android:name="com.cn.bjssc.Splash_Activity"
            android:theme="@style/AppTheme.NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -170,7 +196,7 @@
             <intent-filter>
                 <action android:name="cn.jpush.android.ui.PushActivity" />
                 <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="com.cn.bjscpk" />
+                <category android:name="com.cn.bjssc" />
             </intent-filter>
         </activity>
 
@@ -188,7 +214,7 @@
 
         <!-- since 3.1.0 Required SDK 核心功能-->
         <provider
-            android:authorities="com.cn.bjscpk.DownloadProvider"
+            android:authorities="com.cn.bjssc.DownloadProvider"
             android:name="cn.jpush.android.service.DownloadProvider"
             android:exported="true"
             />
@@ -199,7 +225,7 @@
             android:exported="false">
             <intent-filter android:priority="1000">
                 <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED_PROXY" />   <!--Required  显示通知栏 -->
-                <category android:name="com.cn.bjscpk" />
+                <category android:name="com.cn.bjssc" />
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.USER_PRESENT" />
@@ -219,21 +245,21 @@
 
         <!-- since 3.0.9 Required SDK 核心功能-->
         <provider
-            android:authorities="com.cn.bjscpk.DataProvider"
+            android:authorities="com.cn.bjssc.DataProvider"
             android:name="cn.jpush.android.service.DataProvider"
             android:exported="false"
             />
 
 
         <!-- User defined.  For test only  用户自定义接收消息器,3.0.7开始支持,目前新tag/alias接口设置结果会在该广播接收器对应的方法中回调-->
-        <receiver android:name="com.cn.bjscpk.util.MyJPushMessageReceiver">
+        <receiver android:name="com.cn.bjssc.util.MyJPushMessageReceiver">
             <intent-filter>
                 <action android:name="cn.jpush.android.intent.RECEIVE_MESSAGE" />
-                <category android:name="com.cn.bjscpk"></category>
+                <category android:name="com.cn.bjssc"></category>
             </intent-filter>
         </receiver>
         <receiver
-            android:name="com.cn.bjscpk.util.MyReceiver"
+            android:name="com.cn.bjssc.util.MyReceiver"
             android:exported="false"
             android:enabled="true">
             <intent-filter>
@@ -242,13 +268,13 @@
                 <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED" /> <!--Required  用户接收SDK通知栏信息的intent-->
                 <action android:name="cn.jpush.android.intent.NOTIFICATION_OPENED" /> <!--Required  用户打开自定义通知栏的intent-->
                 <action android:name="cn.jpush.android.intent.CONNECTION" /><!-- 接收网络变化 连接/断开 since 1.6.3 -->
-                <category android:name="com.cn.bjscpk" />
+                <category android:name="com.cn.bjssc" />
             </intent-filter>
         </receiver>
         <!--自动安装7.0-->
         <provider
             android:name="android.support.v4.content.FileProvider"
-            android:authorities="com.cn.bjscpk.fileprovider"
+            android:authorities="com.cn.bjssc.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
@@ -256,8 +282,9 @@
                 android:resource="@xml/file_paths" />
         </provider>
 
-        <activity android:name="com.cn.bjscpk.view.ToastActivity"></activity>
-        <activity android:name="com.cn.bjscpk.view.WebContentView"></activity>
+        <activity android:name="com.cn.bjssc.view.ToastActivity"></activity>
+        <activity android:name="com.cn.bjssc.view.WebContentView"></activity>
+        <activity android:name="com.cn.bjssc.WebViewActivity"></activity>
     </application>
 
 </manifest>

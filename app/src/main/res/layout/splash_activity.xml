@@ -5,7 +5,7 @@
               android:layout_height="match_parent">
     <ImageView
         android:layout_width="match_parent"
-        android:background="@mipmap/start10"
+        android:background="@mipmap/bjsscstart"
         android:layout_height="match_parent"/>
 
 </LinearLayout>
