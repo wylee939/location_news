@@ -2,17 +2,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
       xmlns:tools="http://schemas.android.com/tools"
       tools:showIn="navigation_view">
-    <item android:title="用户中心">
-        <menu>
-            <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/login"
-                android:title="登陆"/>
-        </menu>
-    </item>
+
     <group android:checkableBehavior="single">
-        <item android:title="相关信息">
-        <menu>
         <item
             android:id="@+id/nav_map"
             android:icon="@drawable/map"
@@ -20,7 +11,7 @@
         <item
             android:id="@+id/nav_news"
             android:icon="@drawable/xinwen"
-            android:title="彩票资讯"/>
+            android:title="彩票新闻"/>
         <item
             android:id="@+id/nav_camera"
             android:visible="false"
@@ -38,18 +29,19 @@
             android:id="@+id/nav_manage"
             android:icon="@drawable/jieda"
             android:title="玩法解答"/>
-        </menu>
-        </item>
     </group>
 
-        <item android:title="系统设置">
-            <menu>
-                <item
-                    android:id="@+id/nav_send"
-                    android:icon="@drawable/updata"
-                    android:title="版本更新"/>
-            </menu>
-        </item>
-
+    <item android:title="用户中心">
+        <menu>
+            <item
+                android:id="@+id/nav_share"
+                android:icon="@drawable/login"
+                android:title="登陆"/>
+            <item
+                android:id="@+id/nav_send"
+                android:icon="@drawable/updata"
+                android:title="更新"/>
+        </menu>
+    </item>
 
 </menu>

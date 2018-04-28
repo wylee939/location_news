@@ -3,9 +3,45 @@
       xmlns:app="http://schemas.android.com/apk/res-auto"
     >
     <item
-        android:visible="false"
-        android:id="@+id/action_settings"
+        android:visible="true"
+        android:id="@+id/cqssc"
         android:orderInCategory="100"
-        android:title="购彩地图"
+        android:title="重庆时时彩最新开奖"
+        app:showAsAction="never"/>
+    <item
+        android:visible="true"
+        android:id="@+id/bjsc"
+        android:orderInCategory="100"
+        android:title="北京赛车pk10最新开奖"
+        app:showAsAction="never"/>
+    <item
+        android:visible="true"
+        android:id="@+id/dlt"
+        android:orderInCategory="100"
+        android:title="超级大乐透最新开奖"
+        app:showAsAction="never"/>
+    <item
+        android:visible="true"
+        android:id="@+id/ssq"
+        android:orderInCategory="100"
+        android:title="双色球最新开奖"
+        app:showAsAction="never"/>
+    <item
+        android:visible="true"
+        android:id="@+id/fc3d"
+        android:orderInCategory="100"
+        android:title="福彩3D最新开奖"
+        app:showAsAction="never"/>
+    <item
+        android:visible="true"
+        android:id="@+id/qlc"
+        android:orderInCategory="100"
+        android:title="七乐彩最新开奖"
+        app:showAsAction="never"/>
+    <item
+        android:visible="true"
+        android:id="@+id/pl3"
+        android:orderInCategory="100"
+        android:title="排列3最新开奖"
         app:showAsAction="never"/>
 </menu>
